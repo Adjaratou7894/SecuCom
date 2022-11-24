@@ -9,6 +9,6 @@ public interface CollaboRoleService {
     Collaborateur ajouterCollaborateur(Collaborateur collaborateur);
     Role ajouterRole(Role role);
     void ajouterRoleUser(String username,String nomrole);
-    Collaborateur recupererUserByUsername(String username);
+    Collaborateur loadUserByUsername(String username);
     List<Collaborateur> listCollaborateur();
 }

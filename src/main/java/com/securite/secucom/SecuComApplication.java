@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,10 @@ public class SecuComApplication {
         //System.out.println("Bienvenue  sur cher admin");
         //System.out.println("Bienvenue  sur cher user");
 
+    }
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
    @Bean
     CommandLineRunner start(final CollaboRoleService collaboRoleService){
@@ -32,7 +38,9 @@ public class SecuComApplication {
             collaboRoleService.ajouterCollaborateur(new Collaborateur(null,"Oumarou","adjarasira5@gmail.com","User3","1234", new ArrayList<>()));
 
             collaboRoleService.ajouterRoleUser("haja","ADMIN");
+            collaboRoleService.ajouterRoleUser("haja","USER");
             collaboRoleService.ajouterRoleUser("admin","ADMIN");
+            collaboRoleService.ajouterRoleUser("admin","USER");
             collaboRoleService.ajouterRoleUser("User1","USER");
             collaboRoleService.ajouterRoleUser("User2","USER");
             collaboRoleService.ajouterRoleUser("User3","USER");

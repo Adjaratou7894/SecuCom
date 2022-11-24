@@ -7,6 +7,7 @@ import com.securite.secucom.Repository.RoleRepository;
 import com.securite.secucom.Service.CollaboRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,10 +23,14 @@ public class CollaboRoleServiceImpl implements CollaboRoleService {
     // rolepos est le sigle roleRepository
 
     private RoleRepository rolerepos;
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
     public Collaborateur ajouterCollaborateur(Collaborateur collaborateur) {
+        String pw=collaborateur.getPassword();
+        collaborateur.setPassword(passwordEncoder.encode(pw));
+
         return corepos.save(collaborateur);
     }
 
@@ -43,7 +48,7 @@ public class CollaboRoleServiceImpl implements CollaboRoleService {
     }
 
     @Override
-    public Collaborateur recupererUserByUsername(String username) {
+    public Collaborateur loadUserByUsername(String username) {
         return corepos.findByUsername(username);
     }
 
