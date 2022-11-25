@@ -50,11 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       //http.csrf().disable();
+       http.csrf().disable();
        //pour ne pa utiliser les sessions coté serveur
-       http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+       //http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         /*http.headers().frameOptions().disable();*/
-        //http.formLogin();
+        http.formLogin();
+        http.oauth2Login();
         http.cors().and().csrf().disable();
 
        http.authorizeRequests().anyRequest().authenticated();
