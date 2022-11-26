@@ -32,7 +32,7 @@ public class SecuComApplication {
         //System.out.println("Bienvenue  sur cher user");
 
     }
-   /* @RestController
+    @RestController
     class ELKController {
         private static final Logger LOG = Logger.getLogger(ELKController.class.getName());
 
@@ -92,7 +92,7 @@ public class SecuComApplication {
 
             return rsp;
         }
-    }*/
+    }
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
